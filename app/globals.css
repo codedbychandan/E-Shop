@@ -44,8 +44,8 @@ body {
 
 /* thin scrollbars */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -63,26 +63,26 @@ body {
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-7xl px-3.5 sm:px-6 lg:px-8;
   }
   .heading-1 {
-    @apply font-display text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl;
+    @apply font-display text-3xl font-bold tracking-tight sm:text-5xl lg:text-6xl;
   }
   .heading-2 {
-    @apply font-display text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl;
+    @apply font-display text-xl font-bold tracking-tight sm:text-3xl lg:text-4xl;
   }
   .heading-3 {
-    @apply font-display text-lg font-semibold tracking-tight sm:text-xl;
+    @apply font-display text-base font-semibold tracking-tight sm:text-xl;
   }
   .btn,
   .btn-primary,
   .btn-outline,
   .btn-ghost,
   .btn-dark {
-    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
   }
   .btn-primary {
-    @apply bg-brand-600 text-white hover:bg-brand-700;
+    @apply bg-brand-600 text-white hover:bg-brand-700 shadow-sm shadow-brand-600/20;
   }
   .btn-outline {
     @apply border border-line bg-surface text-ink hover:border-brand-300 hover:text-brand-600;
@@ -94,13 +94,13 @@ body {
     @apply bg-ink text-canvas hover:opacity-90 dark:bg-white dark:text-black;
   }
   .card {
-    @apply rounded-3xl border border-line bg-surface shadow-card;
+    @apply rounded-2xl sm:rounded-3xl border border-line bg-surface shadow-card;
   }
   .input {
-    @apply w-full rounded-xl border border-line bg-surface px-4 py-2.5 text-sm text-ink placeholder:text-muted/70 transition-colors focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20;
+    @apply w-full rounded-xl border border-line bg-surface px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm text-ink placeholder:text-muted/70 transition-colors focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20;
   }
   .label {
-    @apply mb-1.5 block text-sm font-medium text-ink;
+    @apply mb-1.5 block text-xs sm:text-sm font-medium text-ink;
   }
 }
 

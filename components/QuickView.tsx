@@ -46,7 +46,7 @@ export function QuickView() {
   return (
     <Modal open={!!product} onClose={close} title={product?.name ?? ""} size="lg">
       {product && (
-        <div className="grid gap-6 p-6 sm:grid-cols-2">
+        <div className="grid gap-5 p-4 sm:gap-6 sm:p-6 sm:grid-cols-2">
           <div className="overflow-hidden rounded-2xl bg-surface2">
             <ProductImage
               src={product.images[0]}
@@ -59,7 +59,7 @@ export function QuickView() {
             <p className="text-xs font-medium uppercase tracking-wide text-muted">
               {product.brand}
             </p>
-            <h3 className="mt-1 text-lg font-semibold leading-snug">{product.name}</h3>
+            <h3 className="mt-1 text-base sm:text-lg font-semibold leading-snug">{product.name}</h3>
             <div className="mt-2 flex items-center gap-2">
               <Rating value={product.rating} />
               <span className="text-xs text-muted">
@@ -68,9 +68,9 @@ export function QuickView() {
             </div>
 
             <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-2xl font-bold">{inr(product.price)}</span>
+              <span className="text-xl sm:text-2xl font-bold">{inr(product.price)}</span>
               {product.originalPrice > product.price && (
-                <span className="text-sm text-muted line-through">
+                <span className="text-xs sm:text-sm text-muted line-through">
                   {inr(product.originalPrice)}
                 </span>
               )}
@@ -81,7 +81,7 @@ export function QuickView() {
               )}
             </div>
 
-            <p className="mt-3 line-clamp-3 text-sm text-muted">{product.description}</p>
+            <p className="mt-2.5 sm:mt-3 line-clamp-3 text-xs sm:text-sm text-muted">{product.description}</p>
 
             <div className="mt-4 space-y-3">
               {product.colors.length > 1 && (
@@ -108,7 +108,7 @@ export function QuickView() {
                       key={s}
                       onClick={() => setSize(s)}
                       className={cn(
-                        "rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-colors",
+                        "rounded-full border px-3 py-1 sm:px-3.5 sm:py-1.5 text-xs font-semibold transition-colors",
                         size === s
                           ? "border-brand-600 bg-brand-600 text-white"
                           : "border-line text-ink hover:border-brand-300"
@@ -125,43 +125,45 @@ export function QuickView() {
               <div className="flex items-center rounded-full border border-line">
                 <button
                   onClick={() => setQty((q) => Math.max(1, q - 1))}
-                  className="h-10 w-10 text-lg text-muted hover:text-ink"
+                  className="h-9 w-9 sm:h-10 sm:w-10 text-base sm:text-lg text-muted hover:text-ink"
                   aria-label="Decrease quantity"
                 >
                   −
                 </button>
-                <span className="w-8 text-center font-semibold tabular-nums">{qty}</span>
+                <span className="w-8 text-center text-sm font-semibold tabular-nums">{qty}</span>
                 <button
                   onClick={() => setQty((q) => Math.min(10, q + 1))}
-                  className="h-10 w-10 text-lg text-muted hover:text-ink"
+                  className="h-9 w-9 sm:h-10 sm:w-10 text-base sm:text-lg text-muted hover:text-ink"
                   aria-label="Increase quantity"
                 >
                   +
                 </button>
               </div>
-              <span className="text-sm text-muted">
+              <span className="text-xs sm:text-sm text-muted">
                 {product.stock > 0 ? (
-                  <span className="text-emerald-600">In stock</span>
+                  <span className="text-emerald-600 font-medium">In stock</span>
                 ) : (
-                  <span className="text-red-500">Out of stock</span>
+                  <span className="text-red-500 font-medium">Out of stock</span>
                 )}
               </span>
             </div>
 
-            <div className="mt-5 flex gap-2">
+            <div className="mt-5 grid grid-cols-2 gap-2">
               <button
                 onClick={() => handleAdd(false)}
                 disabled={product.stock <= 0}
-                className="btn-primary flex-1"
+                className="btn-primary h-10 sm:h-11 px-3 text-xs sm:text-sm font-semibold truncate"
               >
-                <ShoppingBag size={17} /> Add to Cart
+                <ShoppingBag size={16} className="shrink-0" />
+                <span className="truncate">Add to Cart</span>
               </button>
               <button
                 onClick={() => handleAdd(true)}
                 disabled={product.stock <= 0}
-                className="btn-dark"
+                className="btn-dark h-10 sm:h-11 px-3 text-xs sm:text-sm font-semibold truncate"
               >
-                <Zap size={17} /> Buy Now
+                <Zap size={16} className="shrink-0" />
+                <span className="truncate">Buy Now</span>
               </button>
             </div>
             <button
@@ -169,7 +171,7 @@ export function QuickView() {
                 close();
                 router.push(`/product/${product.id}`);
               }}
-              className="mt-3 text-center text-sm font-semibold text-brand-600 hover:text-brand-700"
+              className="mt-3 text-center text-xs sm:text-sm font-semibold text-brand-600 hover:text-brand-700"
             >
               View full details →
             </button>

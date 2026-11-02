@@ -34,28 +34,28 @@ export function CountdownTimer({ target, size = "sm", className }: CountdownTime
           <div
             className={cn(
               "flex flex-col items-center rounded-xl bg-ink text-canvas dark:bg-white dark:text-black",
-              size === "lg" ? "min-w-[64px] px-2 py-2.5" : "min-w-[52px] px-1.5 py-1.5"
+              size === "lg" ? "min-w-[50px] sm:min-w-[64px] px-1.5 sm:px-2 py-1.5 sm:py-2.5" : "min-w-[46px] sm:min-w-[52px] px-1.5 py-1.5"
             )}
           >
             <span
               className={cn(
                 "font-display font-bold tabular-nums leading-none",
-                size === "lg" ? "text-2xl" : "text-lg"
+                size === "lg" ? "text-xl sm:text-2xl" : "text-base sm:text-lg"
               )}
             >
               {String(u.value).padStart(2, "0")}
             </span>
             <span
               className={cn(
-                "mt-1 text-[10px] font-medium uppercase tracking-wide opacity-70",
-                size === "lg" && "text-[11px]"
+                "mt-1 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide opacity-70",
+                size === "lg" && "text-[10px] sm:text-[11px]"
               )}
             >
               {u.label}
             </span>
           </div>
           {i < units.length - 1 && (
-            <span className={cn("font-bold text-muted", size === "lg" ? "text-xl" : "text-base")}>
+            <span className={cn("font-bold text-muted", size === "lg" ? "text-lg sm:text-xl" : "text-sm sm:text-base")}>
               :
             </span>
           )}

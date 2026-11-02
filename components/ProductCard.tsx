@@ -49,19 +49,19 @@ export function ProductCard({ product, variant = "grid" }: ProductCardProps) {
   const lowStock = product.stock > 0 && product.stock <= 5;
 
   const badge = outOfStock ? (
-    <span className="absolute left-3 top-3 z-10 rounded-full bg-rose-600 px-2.5 py-1 text-xs font-bold text-white shadow-sm">
-      Out of stock
+    <span className="absolute left-2 top-2 sm:left-3 sm:top-3 z-10 rounded-full bg-rose-600 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs font-bold text-white shadow-sm">
+      Sold out
     </span>
   ) : lowStock ? (
-    <span className="absolute left-3 top-3 z-10 rounded-full bg-amber-500 px-2.5 py-1 text-xs font-bold text-white shadow-sm">
-      Only {product.stock} left
+    <span className="absolute left-2 top-2 sm:left-3 sm:top-3 z-10 rounded-full bg-amber-500 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs font-bold text-white shadow-sm">
+      {product.stock} left
     </span>
   ) : product.discount > 0 ? (
-    <span className="absolute left-3 top-3 z-10 rounded-full bg-brand-600 px-2.5 py-1 text-xs font-bold text-white shadow-sm">
+    <span className="absolute left-2 top-2 sm:left-3 sm:top-3 z-10 rounded-full bg-brand-600 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs font-bold text-white shadow-sm">
       -{product.discount}%
     </span>
   ) : product.newArrival ? (
-    <span className="absolute left-3 top-3 z-10 rounded-full bg-emerald-500 px-2.5 py-1 text-xs font-bold text-white shadow-sm">
+    <span className="absolute left-2 top-2 sm:left-3 sm:top-3 z-10 rounded-full bg-emerald-500 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs font-bold text-white shadow-sm">
       New
     </span>
   ) : null;
@@ -72,58 +72,58 @@ export function ProductCard({ product, variant = "grid" }: ProductCardProps) {
       aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
       aria-pressed={wishlisted}
       className={cn(
-        "absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 shadow-sm backdrop-blur transition-all hover:scale-110",
+        "absolute right-2 top-2 sm:right-3 sm:top-3 z-10 flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-surface/90 shadow-sm backdrop-blur transition-all hover:scale-110",
         wishlisted ? "text-rose-500" : "text-muted hover:text-ink"
       )}
     >
-      <Heart size={17} fill={wishlisted ? "currentColor" : "none"} />
+      <Heart size={15} className="sm:w-[17px] sm:h-[17px]" fill={wishlisted ? "currentColor" : "none"} />
     </button>
   );
 
   const titleBlock = (
     <>
-      <p className="text-xs font-medium uppercase tracking-wide text-muted">
+      <p className="text-[10px] sm:text-xs font-medium uppercase tracking-wide text-muted truncate">
         {product.brand}
       </p>
       <Link
         href={`/product/${product.id}`}
         onClick={(e) => e.stopPropagation()}
-        className="line-clamp-2 font-medium leading-snug text-ink transition-colors hover:text-brand-600"
+        className="line-clamp-2 text-xs sm:text-sm font-medium leading-snug text-ink transition-colors hover:text-brand-600"
       >
         {product.name}
       </Link>
-      <div className="flex items-center gap-1.5">
+      <div className="flex items-center gap-1 sm:gap-1.5">
         <Rating value={product.rating} />
-        <span className="text-xs text-muted">({product.reviewCount.toLocaleString("en-IN")})</span>
+        <span className="text-[10px] sm:text-xs text-muted">({product.reviewCount.toLocaleString("en-IN")})</span>
       </div>
     </>
   );
 
   const priceBlock = (
-    <div className="flex items-baseline gap-2">
-      <span className="text-base font-bold text-ink">{inr(product.price)}</span>
+    <div className="flex items-baseline gap-1.5 sm:gap-2">
+      <span className="text-sm sm:text-base font-bold text-ink">{inr(product.price)}</span>
       {product.originalPrice > product.price && (
-        <span className="text-sm text-muted line-through">{inr(product.originalPrice)}</span>
+        <span className="text-xs sm:text-sm text-muted line-through">{inr(product.originalPrice)}</span>
       )}
     </div>
   );
 
   const actionButtons = (
-    <div className="mt-3 flex items-center gap-2">
+    <div className="mt-2 sm:mt-3 flex items-center gap-1.5 sm:gap-2">
       <button
         onClick={handleAddToCart}
         disabled={outOfStock}
-        className="btn-primary h-10 flex-1 rounded-full px-4 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+        className="btn-primary h-8 sm:h-10 flex-1 min-w-0 rounded-full px-2 sm:px-3 text-xs sm:text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        <ShoppingBag size={16} />
-        {outOfStock ? "Out of stock" : "Add to Cart"}
+        <ShoppingBag size={14} className="shrink-0" />
+        <span className="truncate">{outOfStock ? "Sold out" : "Add to Cart"}</span>
       </button>
       <button
         onClick={handleQuickView}
         aria-label="Quick view"
-        className="btn-outline h-10 w-10 shrink-0 rounded-full p-0"
+        className="flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full border border-line bg-surface text-ink hover:border-brand-300 hover:text-brand-600 transition-colors"
       >
-        <Eye size={17} />
+        <Eye size={15} className="sm:w-[17px] sm:h-[17px]" />
       </button>
     </div>
   );
@@ -134,11 +134,11 @@ export function ProductCard({ product, variant = "grid" }: ProductCardProps) {
         layout
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="group relative flex gap-4 rounded-3xl border border-line bg-surface p-4 shadow-card transition-shadow hover:shadow-card-lg sm:gap-5"
+        className="group relative flex gap-3 sm:gap-5 rounded-2xl sm:rounded-3xl border border-line bg-surface p-3 sm:p-4 shadow-card transition-shadow hover:shadow-card-lg"
       >
         <Link
           href={`/product/${product.id}`}
-          className="relative block h-28 w-28 shrink-0 overflow-hidden rounded-2xl bg-surface2 sm:h-36 sm:w-36"
+          className="relative block h-24 w-24 sm:h-36 sm:w-36 shrink-0 overflow-hidden rounded-xl sm:rounded-2xl bg-surface2"
         >
           <ProductImage
             src={product.images[0]}
@@ -148,7 +148,7 @@ export function ProductCard({ product, variant = "grid" }: ProductCardProps) {
         </Link>
         <div className="flex min-w-0 flex-1 flex-col">
           {titleBlock}
-          <div className="mt-auto">
+          <div className="mt-auto pt-2">
             {priceBlock}
             {actionButtons}
           </div>
@@ -166,7 +166,7 @@ export function ProductCard({ product, variant = "grid" }: ProductCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.35, ease: "easeOut" }}
-      className="group relative flex flex-col overflow-hidden rounded-3xl border border-line bg-surface shadow-card transition-shadow hover:shadow-card-lg"
+      className="group relative flex flex-col overflow-hidden rounded-2xl sm:rounded-3xl border border-line bg-surface shadow-card transition-shadow hover:shadow-card-lg"
     >
       <Link
         href={`/product/${product.id}`}
@@ -182,7 +182,7 @@ export function ProductCard({ product, variant = "grid" }: ProductCardProps) {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       </Link>
 
-      <div className="flex flex-1 flex-col gap-1.5 p-4">
+      <div className="flex flex-1 flex-col gap-1 sm:gap-1.5 p-2.5 sm:p-4">
         {titleBlock}
         <div className="mt-auto pt-1">
           {priceBlock}

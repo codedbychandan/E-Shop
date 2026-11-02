@@ -67,7 +67,7 @@ function ShopClient() {
             value={sort}
             onChange={(e) => setSort(e.target.value as SortKey)}
             aria-label="Sort products"
-            className="input h-10 w-auto min-w-[170px] cursor-pointer"
+            className="input h-10 w-auto flex-1 min-w-0 sm:flex-initial sm:min-w-[170px] cursor-pointer text-xs sm:text-sm"
           >
             {SORT_OPTIONS.map((o) => (
               <option key={o.value} value={o.value}>

@@ -217,7 +217,7 @@ export default function ProductPage() {
   ];
 
   return (
-    <div className="container-page py-8 lg:py-12">
+    <div className="container-page py-8 lg:py-12 pb-24 sm:pb-12">
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted">
         <ol className="flex flex-wrap items-center gap-1.5">
@@ -360,40 +360,48 @@ export default function ProductPage() {
           </div>
 
           {/* Actions */}
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <button
-              onClick={() => handleAdd(false)}
-              disabled={product.stock <= 0}
-              className="btn-primary h-12 flex-1"
-            >
-              <ShoppingBag size={18} /> Add to Cart
-            </button>
-            <button
-              onClick={() => handleAdd(true)}
-              disabled={product.stock <= 0}
-              className="btn-dark h-12 flex-1"
-            >
-              <Zap size={18} /> Buy Now
-            </button>
-            <button
-              onClick={handleWishlist}
-              aria-pressed={wishlisted}
-              aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
-              className={cn(
-                "btn-outline h-12 w-12 shrink-0 p-0",
-                wishlisted && "border-rose-200 text-rose-500"
-              )}
-            >
-              <Heart size={19} fill={wishlisted ? "currentColor" : "none"} />
-            </button>
-            <button
-              onClick={handleShare}
-              aria-label="Share product"
-              className="btn-outline h-12 w-12 shrink-0 p-0"
-              title="Share / Copy Link"
-            >
-              <Share2 size={18} />
-            </button>
+          <div className="mt-6 space-y-2.5 sm:space-y-0 sm:flex sm:items-center sm:gap-3">
+            <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-1 sm:gap-3">
+              <button
+                onClick={() => handleAdd(false)}
+                disabled={product.stock <= 0}
+                className="btn-primary h-11 sm:h-12 flex-1 text-xs sm:text-base font-semibold px-2 sm:px-5"
+              >
+                <ShoppingBag size={16} className="shrink-0 sm:w-[18px] sm:h-[18px]" />
+                <span className="truncate">Add to Cart</span>
+              </button>
+              <button
+                onClick={() => handleAdd(true)}
+                disabled={product.stock <= 0}
+                className="btn-dark h-11 sm:h-12 flex-1 text-xs sm:text-base font-semibold px-2 sm:px-5"
+              >
+                <Zap size={16} className="shrink-0 sm:w-[18px] sm:h-[18px]" />
+                <span className="truncate">Buy Now</span>
+              </button>
+            </div>
+            <div className="flex gap-2 sm:gap-3">
+              <button
+                onClick={handleWishlist}
+                aria-pressed={wishlisted}
+                aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+                className={cn(
+                  "btn-outline h-10 sm:h-12 flex-1 sm:w-12 sm:flex-initial p-0 flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold",
+                  wishlisted && "border-rose-200 text-rose-500 bg-rose-50/50 dark:bg-rose-950/20"
+                )}
+              >
+                <Heart size={16} className="sm:w-[19px] sm:h-[19px]" fill={wishlisted ? "currentColor" : "none"} />
+                <span className="sm:hidden">{wishlisted ? "Saved" : "Wishlist"}</span>
+              </button>
+              <button
+                onClick={handleShare}
+                aria-label="Share product"
+                className="btn-outline h-10 sm:h-12 flex-1 sm:w-12 sm:flex-initial p-0 flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold"
+                title="Share / Copy Link"
+              >
+                <Share2 size={16} className="sm:w-[18px] sm:h-[18px]" />
+                <span className="sm:hidden">Share</span>
+              </button>
+            </div>
           </div>
 
           {/* Pincode Delivery Check */}
